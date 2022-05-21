@@ -65,7 +65,7 @@ alias ...='cl ../../..'
 alias tb='taskbook'
 alias zz='z -I -t .'
 
-alias src='source ~/.zshrc'
+alias refresh='source ~/.zshrc'
 
 
 alias mnt='/home/alex/scripts/222/mnt.sh'
@@ -93,6 +93,7 @@ alias F='fzf -m | xargs '
 alias vimrc='${=EDITOR} ${ZDOTDIR:-$HOME}/.vimrc'
 alias basha='${=EDITOR} ${ZDOTDIR:-$HOME}/.bash_aliases'
 alias pg='ps aux | grep -v grep | grep $1'
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
-
+alias tags='ctags --recurse=yes --exclude=.git'
 

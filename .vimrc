@@ -81,6 +81,7 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 
 call plug#begin()
+Plug 'stephpy/vim-php-cs-fixer'
 Plug 'mileszs/ack.vim'
 " Plug 'thaerkh/vim-workspace'
 Plug 'posva/vim-vue'
@@ -376,21 +377,22 @@ let g:vim_vue_plugin_config = {
       \'debug': 0,
       \}
 
-
+let b:ale_fix_on_save = 1
+let b:ale_fixers = ['prettier', 'eslint']
 function! FormatPhp()
     :w
-    let l:command =  "./vendor/bin/php-cs-fixer fix " .  expand('%:p') 
+    let l:command =  "/usr/local/bin/php-cs-fixer fix " .  expand('%:p') 
     let l:output = system(l:command)
     :e
      " echo l:output
 
 endfunction
-autocmd FileType php inoremap <buffer> <leader>f <ESC> :call FormatPhp()<CR>
-autocmd FileType php nnoremap <buffer> <leader>f  :call FormatPhp()<CR>
-autocmd FileType php nnoremap <buffer> <C-s>  :call FormatPhp()<CR>
+" autocmd FileType php inoremap <buffer> <leader>f <ESC> :call FormatPhp()<CR>
+" autocmd FileType php nnoremap <buffer> <leader>f  :call FormatPhp()<CR>
+" autocmd FileType php nnoremap <buffer> <C-s>  :call FormatPhp()<CR>
 
-
-
+vnoremap <silent><leader>ff :call FormatPhp() <CR>
+autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 
 
 
