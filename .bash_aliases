@@ -77,6 +77,7 @@ alias cd2='cd /home/alex/projects/notes-vue'
 alias cd3='cd /home/alex/projects/vue3'
 
 alias dus='du -sh * | sort -rh'
+alias duds='du -d 1 -h | sort -rh'
 
 
 alias backup='sudo ~/scripts/new_backup.php'
@@ -96,4 +97,6 @@ alias pg='ps aux | grep -v grep | grep $1'
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 alias tags='ctags --recurse=yes --exclude=.git'
+alias -g B='| bat'
+
 

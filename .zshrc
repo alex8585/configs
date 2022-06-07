@@ -7,8 +7,10 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 export HISTCONTROL=ignoreboth
 export CDPATH=/home/links
 export ZSH="/home/alex/.oh-my-zsh"
+export UPDATE_ZSH_DAYS=1
 EDITOR=vim; export EDITOR
 eval "$(lua /home/alex/scripts/z.lua-master/z.lua --init zsh once)"
+
 
 source /opt/nvm/nvm.sh
 stty start undef
@@ -30,7 +32,7 @@ PS1='\[\033[1;31m\]$ >\[\033[00m\] '
 
 ZSH_THEME="agnoster"
 
-plugins=(tmux git laravel common-aliases )
+plugins=(extract fancy-ctrl-z dircycle cp copyfile copybuffer copypath ag tmux git laravel common-aliases aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -40,3 +42,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+[[ -s /home/alex/.autojump/etc/profile.d/autojump.sh ]] && source /home/alex/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u

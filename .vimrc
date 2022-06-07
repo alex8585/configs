@@ -21,14 +21,12 @@ set cmdheight=1
 set relativenumber
 set ai " Auto indent
 set si " Smart indent
-set hidden
 
 set smartcase "smart cases when search
 "set hlsearch "highlight search results
 set incsearch "incremental searching
 set ignorecase "ignore case when searching
 set clipboard=unnamedplus
-
 
 
 map <C-j> <C-W>j
@@ -68,15 +66,15 @@ filetype plugin on
 imap <Leader>' ''<ESC>i
 imap <Leader>" ""<ESC>i
 
-let g:markdown_fenced_languages = ['html', 'css', 'php', 'javascript', 'python', 'bash=sh', 'vim']
+let g:markdown_fenced_languages = ['html', 'css', 'php',  'python', 'bash=sh', 'vim']
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-
-
+" let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+" let g:lsp_document_highlight_enabled = 0
 
 
 
@@ -99,7 +97,7 @@ Plug 'mattn/vim-lsp-settings'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
+Plug 'maxmellon/vim-jsx-pretty' 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
@@ -324,7 +322,7 @@ set incsearch
 
 
 " When I close a tab, remove the buffer
-set nohidden
+" set nohidden
 
 " set nice column line
 "set colorcolumn=90
@@ -377,7 +375,7 @@ let g:vim_vue_plugin_config = {
       \'debug': 0,
       \}
 
-let b:ale_fix_on_save = 1
+let b:ale_fix_on_save = 0
 let b:ale_fixers = ['prettier', 'eslint']
 function! FormatPhp()
     :w
@@ -394,6 +392,14 @@ endfunction
 vnoremap <silent><leader>ff :call FormatPhp() <CR>
 autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 
+nnoremap <silent><leader>pi :source ~/.vimrc \| :PlugInstall<CR>
 
 
 
+
+set wildmenu
+set wcm=<Tab>
+menu Exit.quit     :quit<CR>
+menu Exit.quit!    :quit!<CR>
+menu Exit.save     :exit<CR>
+map <F10> :emenu Exit.<Tab>
