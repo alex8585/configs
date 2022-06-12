@@ -27,6 +27,14 @@ set smartcase "smart cases when search
 set incsearch "incremental searching
 set ignorecase "ignore case when searching
 set clipboard=unnamedplus
+" set clipboard+=unnamed
+
+    " augroup jsFileTypes
+    "   au!
+    "   autocmd BufNewFile,BufRead *.vue   set syntax=javascript
+    " augroup END
+
+
 
 
 map <C-j> <C-W>j
@@ -176,8 +184,14 @@ nnoremap <leader>s :ToggleWorkspace<CR>
 " autocmd FileType vue setlocal commentstring=#\ %s
 
 
+let g:ack_use_cword_for_empty_search = 1
+let g:ack_autoclose = 0
+" let g:ackprg = 'rg --vimgrep --hidden --type-not sql --smart-case'
+let g:ackprg = 'ag --vimgrep'
+let $FZF_DEFAULT_OPTS = '--layout=reverse'
+"let $FZF_DEFAULT_OPTS="--height 80% --color=dark --layout=reverse --margin=1,1 --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,pointer:12,marker:4,spinner:11,header:-1"
+" let $FZF_DEFAULT_OPTS='--layout=reverse -vborder'
 let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
-" let $FZF_DEFAULT_OPTS="--color=dark --layout=reverse --margin=1,1 --color=fg:15,bg:-1,hl:1,fg+:#ffffff,bg+:0,hl+:1 --color=info:0,pointer:12,marker:4,spinner:11,header:-1"
 
 
 let g:vscode_style = "dark"
@@ -228,9 +242,6 @@ let g:ctrlp_custom_ignore = '\v[\/](git|hg|svn|node_modules)$'
 
 
 
-let g:ack_use_cword_for_empty_search = 1
-let g:ack_autoclose = 1
-let g:ackprg = 'rg --vimgrep --hidden --type-not sql --smart-case'
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
@@ -385,12 +396,25 @@ function! FormatPhp()
      " echo l:output
 
 endfunction
+
+" au! BufRead,BufNewFile *.vue set filetype=javascript
+function! FormatJs()
+    :w
+    let l:command =  "/usr/bin/prettier --write " .  expand('%:p') 
+    let l:output = system(l:command)
+    :e
+    " echo l:command
+endfunction
 " autocmd FileType php inoremap <buffer> <leader>f <ESC> :call FormatPhp()<CR>
 " autocmd FileType php nnoremap <buffer> <leader>f  :call FormatPhp()<CR>
 " autocmd FileType php nnoremap <buffer> <C-s>  :call FormatPhp()<CR>
 
-vnoremap <silent><leader>ff :call FormatPhp() <CR>
-autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
+autocmd FileType php nmap <leader>ff :call FormatPhp() <CR>
+autocmd FileType javascript,vue,typescriptreact,typescript nmap <leader>ff :call FormatJs() <CR>
+
+
+
+" autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 
 nnoremap <silent><leader>pi :source ~/.vimrc \| :PlugInstall<CR>
 

@@ -80,7 +80,7 @@ alias dus='du -sh * | sort -rh'
 alias duds='du -d 1 -h | sort -rh'
 
 
-alias backup='sudo ~/scripts/new_backup.php'
+alias backup='sudo ${DATA_DIR}/scripts/new_backup.php'
 alias backup2=' ~/scripts/rsync_backup.sh'
 
 
