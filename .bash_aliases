@@ -6,12 +6,12 @@ function changeDirectory {
 }
 
 laravel_create() {
-	cd /home/alex/scripts/ansible/nginx-laravel &&
+	cd /home/alex/data/scripts/ansible/nginx-laravel &&
 	ansible-playbook playbook.yml -i hosts.yml  --ask-become-pass --extra-vars "http_host=$1"
 }
 
 wp_create() {
-        cd /home/alex/scripts/ansible/nginx-wordpress &&
+        cd /home/alex/data/scripts/ansible/nginx-wordpress &&
         ansible-playbook playbook.yml -i hosts.yml  --ask-become-pass --extra-vars "http_host=$1"
 }
 

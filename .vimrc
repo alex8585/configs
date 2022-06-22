@@ -51,8 +51,8 @@ runtime macros/matchit.vim
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-autocmd InsertEnter * set cul
-autocmd InsertLeave * set nocul
+" autocmd InsertEnter * set cul
+" autocmd InsertLeave * set nocul
 
 " Remove newbie crutches in Normal Mode
 noremap <Down> <Nop>
@@ -78,8 +78,8 @@ let g:markdown_fenced_languages = ['html', 'css', 'php',  'python', 'bash=sh', '
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+" autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+" autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 " let g:lsp_document_highlight_enabled = 0
@@ -87,7 +87,7 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 
 call plug#begin()
-Plug 'stephpy/vim-php-cs-fixer'
+" Plug 'stephpy/vim-php-cs-fixer'
 Plug 'mileszs/ack.vim'
 " Plug 'thaerkh/vim-workspace'
 Plug 'posva/vim-vue'
@@ -405,14 +405,22 @@ function! FormatJs()
     :e
     " echo l:command
 endfunction
+
+function! FormatPython()
+    :w
+    let l:command =  "autopep8 --in-place " .  expand('%:p')
+    let l:output = system(l:command)
+    :e
+    " echo l:command
+endfunction
+
 " autocmd FileType php inoremap <buffer> <leader>f <ESC> :call FormatPhp()<CR>
 " autocmd FileType php nnoremap <buffer> <leader>f  :call FormatPhp()<CR>
 " autocmd FileType php nnoremap <buffer> <C-s>  :call FormatPhp()<CR>
 
 autocmd FileType php nmap <leader>ff :call FormatPhp() <CR>
 autocmd FileType javascript,vue,typescriptreact,typescript nmap <leader>ff :call FormatJs() <CR>
-
-
+autocmd FileType python nmap <leader>ff :call FormatPython() <CR>
 
 " autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 

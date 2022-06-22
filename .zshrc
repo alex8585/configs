@@ -60,4 +60,4 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 autoload -U compinit && compinit -u
 
-
+bindkey '^ ' autosuggest-accept
