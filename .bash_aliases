@@ -55,7 +55,6 @@ alias vagstart='cd ~/Homestead/ && vagrant up && ssh vagrant@192.168.10.10'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-alias backup='sudo ~/scripts/new_backup.php'
 
 alias cl=changeDirectory
 alias .='cl ..'
@@ -80,7 +79,7 @@ alias dus='du -sh * | sort -rh'
 alias duds='du -d 1 -h | sort -rh'
 
 
-alias backup='sudo ${DATA_DIR}/scripts/new_backup.php'
+alias backup='sudo ${DATA_DIR}/scripts/python/backup.py'
 alias backup2=' ~/scripts/rsync_backup.sh'
 
 
