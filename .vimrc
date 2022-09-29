@@ -81,9 +81,6 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 " autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-" let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
-" let g:lsp_document_highlight_enabled = 0
-
 
 
 call plug#begin()
@@ -92,7 +89,7 @@ Plug 'mileszs/ack.vim'
 " Plug 'thaerkh/vim-workspace'
 Plug 'posva/vim-vue'
 " Plug 'w0rp/ale'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -201,8 +198,10 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 
-let g:lsp_diagnostics_enabled = 0
-
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_highlights_enabled = 0
+let g:lsp_document_highlight_enabled = 1
 
 
 function! IPhpInsertUse()
@@ -280,7 +279,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <leader>d :LspDefinition <CR>
 " nnoremap <leader>h :LspHover <CR>
 nnoremap <leader>p :LspWorkspaceSymbol <CR>
-nnoremap <leader>e :LspPreviousDiagnostic <CR>
+nnoremap <leader>e :LspNextDiagnostic<CR>
 
 " nnoremap <leader>f :LspDocumentFormat <CR>
 "nnoremap <C-f> :NERDTreeFocus<CR>
@@ -400,7 +399,7 @@ endfunction
 " au! BufRead,BufNewFile *.vue set filetype=javascript
 function! FormatJs()
     :w
-    let l:command =  "/usr/bin/prettier --write " .  expand('%:p') 
+    let l:command =  "/home/alex85/.nvm/versions/node/v18.7.0/bin/prettier --write " .  expand('%:p') 
     let l:output = system(l:command)
     :e
     " echo l:command
@@ -418,7 +417,8 @@ endfunction
 " autocmd FileType php nnoremap <buffer> <leader>f  :call FormatPhp()<CR>
 " autocmd FileType php nnoremap <buffer> <C-s>  :call FormatPhp()<CR>
 
-autocmd FileType php nmap <leader>ff :call FormatPhp() <CR>
+" autocmd FileType php nmap <leader>ff :call FormatPhp() <CR>
+autocmd FileType php nmap <leader>ff :LspDocumentFormat <CR>
 autocmd FileType javascript,vue,typescriptreact,typescript nmap <leader>ff :call FormatJs() <CR>
 autocmd FileType python nmap <leader>ff :call FormatPython() <CR>
 

@@ -6,12 +6,12 @@ function changeDirectory {
 }
 
 laravel_create() {
-	cd /home/alex/data/scripts/ansible/nginx-laravel &&
+	cd /home/alex85/data/scripts/ansible/nginx-laravel &&
 	ansible-playbook playbook.yml -i hosts.yml  --ask-become-pass --extra-vars "http_host=$1"
 }
 
 wp_create() {
-        cd /home/alex/data/scripts/ansible/nginx-wordpress &&
+        cd /home/alex85/data/scripts/ansible/nginx-wordpress &&
         ansible-playbook playbook.yml -i hosts.yml  --ask-become-pass --extra-vars "http_host=$1"
 }
 
@@ -97,5 +97,5 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 alias tags='ctags --recurse=yes --exclude=.git'
 alias -g B='| bat'
-
+alias python='python3'
 
