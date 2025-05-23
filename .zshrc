@@ -10,8 +10,23 @@ export CDPATH=/home/links
 export ZSH="$HOME/.oh-my-zsh"
 export UPDATE_ZSH_DAYS=1
 EDITOR=vim; export EDITOR
-eval "$(lua /home/alex85/data/scripts/z.lua-master/z.lua --init zsh once)"
+eval "$(lua /mnt/home/alex85/data/scripts/z.lua-master/z.lua --init zsh once)"
 # source ~/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+#source '/usr/local/bin/virtualenvwrapper.sh'
+source <(fzf --zsh) 
+
+# Add this to your .bashrc, .zshrc or equivalent.
+# Run 'fff' with 'f' or whatever you decide to name the function.
+f() {
+    fff "$@"
+    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
+}
+
+
 
 # source /opt/nvm/nvm.sh
 stty start undef
@@ -33,7 +48,7 @@ PS1='\[\033[1;31m\]$ >\[\033[00m\] '
 
 ZSH_THEME="agnoster"
 
-plugins=(fzf extract fancy-ctrl-z dircycle cp copyfile copybuffer copypath ag tmux git laravel common-aliases aliases)
+plugins=(fzf extract fancy-ctrl-z dircycle cp copyfile copybuffer copypath tmux git laravel common-aliases aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -52,3 +67,5 @@ autoload -U compinit && compinit -u
 export PNPM_HOME="/home/alex85/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

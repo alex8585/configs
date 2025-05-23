@@ -6,12 +6,12 @@ function changeDirectory {
 }
 
 laravel_create() {
-	cd /home/alex85/data/scripts/ansible/nginx-laravel &&
+	cd /mnt/home/alex85/data/scripts/ansible/nginx-laravel &&
 	ansible-playbook playbook.yml -i hosts.yml  --ask-become-pass --extra-vars "http_host=$1"
 }
 
 wp_create() {
-        cd /home/alex85/data/scripts/ansible/nginx-wordpress &&
+        cd /mnt/home/alex85/data/scripts/ansible/nginx-wordpress &&
         ansible-playbook playbook.yml -i hosts.yml  --ask-become-pass --extra-vars "http_host=$1"
 }
 
@@ -49,19 +49,14 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias arbitrage='node ~/projects/arbitrage/main.js'
-alias vagstart='cd ~/Homestead/ && vagrant up && ssh vagrant@192.168.10.10'
-# Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
 alias cl=changeDirectory
-alias .='cl ..'
 alias ..='cl ../..'
 alias ...='cl ../../..'
 
-alias tb='taskbook'
 alias zz='z -I -t .'
 
 alias refresh='source ~/.zshrc'
@@ -79,11 +74,11 @@ alias dus='du -sh * | sort -rh'
 alias duds='du -d 1 -h | sort -rh'
 
 
-alias backup='sudo ${DATA_DIR}/scripts/python/backup.py'
+alias backup='sudo ${DATA_DIR}/python_projects/python/backup.py'
 alias backup2=' ~/scripts/rsync_backup.sh'
 
 
-
+alias fdf='\fdfind'
 #alias rs='rsync -azvhP'
 alias cc='cd $(cd /home/links && ls | fzf)'
 alias ag='ag --no-heading --hidden'

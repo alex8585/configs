@@ -90,6 +90,9 @@ Plug 'mileszs/ack.vim'
 Plug 'posva/vim-vue'
 " Plug 'w0rp/ale'
 " Plug 'dense-analysis/ale'
+Plug 'nelsyeung/twig.vim'
+Plug 'mattn/emmet-vim'
+
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -156,6 +159,9 @@ Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 Plug 'folke/tokyonight.nvim'
 
+Plug 'crusoexia/vim-monokai'
+
+Plug 'junegunn/seoul256.vim'
 Plug 'jam1garner/vim-code-monokai'
 Plug 'marko-cerovac/material.nvim'
 Plug 'shaunsingh/moonlight.nvim'
@@ -179,7 +185,7 @@ call plug#end()
 nnoremap <leader>s :ToggleWorkspace<CR>
 
 " autocmd FileType vue setlocal commentstring=#\ %s
-
+let g:user_emmet_leader_key='<C-X>'
 
 let g:ack_use_cword_for_empty_search = 1
 let g:ack_autoclose = 0
