@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export VIMCONF="/home/alex/.vim"
 export NVM_DIR="$HOME/.nvm"
 export NVM_DIR=/usr/local/nvm
@@ -12,6 +19,7 @@ export UPDATE_ZSH_DAYS=1
 EDITOR=vim; export EDITOR
 eval "$(lua /mnt/home/alex85/data/scripts/z.lua-master/z.lua --init zsh once)"
 # source ~/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
 
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
@@ -46,9 +54,10 @@ fi
 
 PS1='\[\033[1;31m\]$ >\[\033[00m\] '
 
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(fzf extract fancy-ctrl-z dircycle cp copyfile copybuffer copypath tmux git laravel common-aliases aliases)
+plugins=(zsh-autosuggestions fzf extract fancy-ctrl-z dircycle cp copyfile copybuffer copypath tmux git common-aliases aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -67,5 +76,34 @@ autoload -U compinit && compinit -u
 export PNPM_HOME="/home/alex85/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+export PATH=/home/alex/.local/bin:$PATH
+
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+
+
+alias vim='gvim -v'
+export EDITOR="gvim -v"
+export VISUAL="$EDITOR"
+
+fpath+=~/.zsh/completions
+autoload -Uz compinit && compinit
+
+
+eval "$(zoxide init zsh)"
+
+
+function fcd() {
+    local dir
+    dir=$(fd -t d . ~ | fzf) && cd "$dir"
+}
+bindkey -s '^g' 'fcd\n'
+
+setopt correct
+setopt correct_all
+
+alias r='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

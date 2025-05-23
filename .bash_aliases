@@ -16,22 +16,6 @@ wp_create() {
 }
 
 
-php56() {
-    sudo update-alternatives --set php /usr/bin/php5.6
-}
-
-function php70() {
-    sudo update-alternatives --set php /usr/bin/php7.0
-}
-
-function php71() {
-    sudo update-alternatives --set php /usr/bin/php7.1
-}
-
-function php72() {
-    sudo update-alternatives --set php /usr/bin/php7.2
-}
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -93,4 +77,12 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias tags='ctags --recurse=yes --exclude=.git'
 alias -g B='| bat'
 alias python='python3'
+
+alias v='vim'
+alias lv='lvim'
+
+alias larad="cd /home/alex/new_data/projects/laradock && docker-compose up -d nginx mysql phpmyadmin workspace"
+alias work="docker exec -u laradock -it laradock-workspace-1 zsh"
+
+
 
